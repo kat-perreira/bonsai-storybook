@@ -1,14 +1,1714 @@
-body {
-  margin: 0;
-  padding: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+hs-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1081;
+  font-size: 1.3rem;
+  line-height: 1.8rem; }
+  hs-modal .modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #fff;
+    opacity: 0.8;
+    overflow: hidden;
+    z-index: 100; }
+  hs-modal .dialog-wrapper {
+    display: flex; }
+  hs-modal .modal-dialog {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin-top: 50vh;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1041;
+    max-height: 90vh;
+    max-width: 90vw;
+    background: white;
+    border-radius: 4px;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2); }
+  hs-modal header {
+    position: relative;
+    padding: 0 20px 0 24px;
+    background-color: #206fb1;
+    border-radius: 4px 4px 0 0; }
+    hs-modal header .header-inner {
+      height: 2rem;
+      margin: 24px 0; }
+    hs-modal header .modal-title {
+      font-size: 2rem;
+      color: white;
+      margin: 0;
+      font-weight: 700; }
+    hs-modal header hs-icon.modal-title-icon,
+    hs-modal header .hs-icon.modal-title-icon {
+      color: white;
+      margin-right: 8px; }
+    hs-modal header .close {
+      color: white;
+      opacity: 1;
+      background: none;
+      border: none;
+      outline: none; }
+      hs-modal header .close:hover, hs-modal header .close:focus {
+        color: white;
+        opacity: 1; }
+        hs-modal header .close:hover hs-icon svg, hs-modal header .close:hover .hs-icon svg, hs-modal header .close:focus hs-icon svg, hs-modal header .close:focus .hs-icon svg {
+          background: rgba(255, 255, 255, 0.3); }
+      hs-modal header .close .hsicon__wrapper {
+        border: none; }
+      hs-modal header .close .hs-icon svg,
+      hs-modal header .close hs-icon svg {
+        background: none;
+        padding: 24%; }
+  hs-modal section {
+    position: relative;
+    flex: 1 1 auto;
+    overflow: auto; }
+  hs-modal footer {
+    padding: 0 24px;
+    background: #f0f0f0;
+    box-sizing: border-box;
+    border-radius: 0 0 4px 4px; }
+    hs-modal footer .footer-inner {
+      height: 3.6rem;
+      margin: 16px 0; }
+      hs-modal footer .footer-inner hs-button + hs-button {
+        margin-left: 12px; }
+      hs-modal footer .footer-inner hs-button[label=hidden] {
+        display: none; }
+  hs-modal[open] {
+    display: block; }
+    hs-modal[open] .modal-dialog {
+      opacity: 0;
+      transition: opacity 0.3s ease-in-out; }
+      body.hs-modal-open hs-modal[open] .modal-dialog {
+        opacity: 1; }
+  hs-modal[busy] .async-loading {
+    z-index: 1080;
+    display: block; }
+  hs-modal[type=alert] .modal-dialog, hs-modal[type=warning] .modal-dialog, hs-modal[type=info] .modal-dialog {
+    max-width: 320px;
+    min-height: 320px;
+    box-shadow: 0 3px 16px rgba(0, 0, 0, 0.2); }
+  hs-modal[type=alert] header, hs-modal[type=warning] header, hs-modal[type=info] header {
+    background-color: white; }
+    hs-modal[type=alert] header .modal-title,
+    hs-modal[type=alert] header .hs-icon.modal-title-icon, hs-modal[type=warning] header .modal-title,
+    hs-modal[type=warning] header .hs-icon.modal-title-icon, hs-modal[type=info] header .modal-title,
+    hs-modal[type=info] header .hs-icon.modal-title-icon {
+      color: #e9696e; }
+  hs-modal[type=alert] footer, hs-modal[type=warning] footer, hs-modal[type=info] footer {
+    background-color: white; }
+    hs-modal[type=alert] footer .footer-inner, hs-modal[type=warning] footer .footer-inner, hs-modal[type=info] footer .footer-inner {
+      height: auto; }
+    hs-modal[type=alert] footer hs-button, hs-modal[type=warning] footer hs-button, hs-modal[type=info] footer hs-button {
+      width: 50%; }
+      hs-modal[type=alert] footer hs-button button, hs-modal[type=warning] footer hs-button button, hs-modal[type=info] footer hs-button button {
+        width: 100%; }
+  hs-modal[type=alert] header .modal-title,
+  hs-modal[type=alert] header .hs-icon.modal-title-icon {
+    color: #e9696e; }
+  hs-modal[type=alert] footer hs-button.primary button {
+    border-color: #e9696e;
+    background-color: #e9696e; }
+  hs-modal[type=warning] header .modal-title,
+  hs-modal[type=warning] header .hs-icon.modal-title-icon {
+    color: #ff7f66; }
+  hs-modal[type=warning] footer hs-button.primary button {
+    border-color: #ff7f66;
+    background-color: #ff7f66; }
+  hs-modal[type=info] header .modal-title,
+  hs-modal[type=info] header .hs-icon.modal-title-icon {
+    color: #206fb1; }
+  hs-modal[type=info] footer hs-button.primary button {
+    border-color: #206fb1;
+    background-color: #206fb1; }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
-}
+body.modal-open > .popover,
+body.modal-open > .popover__bubble {
+  z-index: 2000; }
+
+html.desktop .modal .modal-header,
+html.tablet .modal .modal-header {
+  height: 2rem; }
+
+html.desktop .modal,
+html.tablet .modal,
+html.mobile-layout .modal {
+  border: none; }
+  html.desktop .modal .modal-header,
+  html.tablet .modal .modal-header,
+  html.mobile-layout .modal .modal-header {
+    padding: 24px 20px 24px 24px;
+    background-color: #206fb1;
+    border-radius: 4px 4px 0 0; }
+    html.desktop .modal .modal-header .header-inner,
+    html.tablet .modal .modal-header .header-inner,
+    html.mobile-layout .modal .modal-header .header-inner {
+      display: flex;
+      align-items: center;
+      height: 2rem; }
+    html.desktop .modal .modal-header h3, html.desktop .modal .modal-header .modal-title,
+    html.tablet .modal .modal-header h3,
+    html.tablet .modal .modal-header .modal-title,
+    html.mobile-layout .modal .modal-header h3,
+    html.mobile-layout .modal .modal-header .modal-title {
+      font-size: 2rem;
+      line-height: 2.2rem;
+      color: white;
+      margin: 0;
+      font-weight: 700;
+      flex: 1 1 auto; }
+      html.desktop .modal .modal-header h3 hs-icon, html.desktop .modal .modal-header .modal-title hs-icon,
+      html.tablet .modal .modal-header h3 hs-icon,
+      html.tablet .modal .modal-header .modal-title hs-icon,
+      html.mobile-layout .modal .modal-header h3 hs-icon,
+      html.mobile-layout .modal .modal-header .modal-title hs-icon {
+        vertical-align: text-bottom;
+        margin-right: 8px; }
+    html.desktop .modal .modal-header .close,
+    html.tablet .modal .modal-header .close,
+    html.mobile-layout .modal .modal-header .close {
+      font-size: 3.6rem;
+      font-weight: 800;
+      height: 3.6rem;
+      width: 3.6rem;
+      border-radius: 50%;
+      order: 2;
+      flex: 0 1 auto;
+      transition: all linear 0.2s; }
+      html.desktop .modal .modal-header .close:hover, html.desktop .modal .modal-header .close:focus,
+      html.tablet .modal .modal-header .close:hover,
+      html.tablet .modal .modal-header .close:focus,
+      html.mobile-layout .modal .modal-header .close:hover,
+      html.mobile-layout .modal .modal-header .close:focus {
+        background: rgba(255, 255, 255, 0.3); }
+    html.desktop .modal .modal-header .header-inner,
+    html.tablet .modal .modal-header .header-inner,
+    html.mobile-layout .modal .modal-header .header-inner {
+      width: 100%; }
+      html.desktop .modal .modal-header .header-inner .modal-title-icon,
+      html.tablet .modal .modal-header .header-inner .modal-title-icon,
+      html.mobile-layout .modal .modal-header .header-inner .modal-title-icon {
+        margin-right: 8px; }
+      html.desktop .modal .modal-header .header-inner > .flx,
+      html.tablet .modal .modal-header .header-inner > .flx,
+      html.mobile-layout .modal .modal-header .header-inner > .flx {
+        flex: 1 1 auto;
+        overflow: hidden; }
+      html.desktop .modal .modal-header .header-inner h3,
+      html.tablet .modal .modal-header .header-inner h3,
+      html.mobile-layout .modal .modal-header .header-inner h3 {
+        padding: 0; }
+      html.desktop .modal .modal-header .header-inner .close,
+      html.tablet .modal .modal-header .header-inner .close,
+      html.mobile-layout .modal .modal-header .header-inner .close {
+        padding: 0; }
+        html.desktop .modal .modal-header .header-inner .close svg,
+        html.tablet .modal .modal-header .header-inner .close svg,
+        html.mobile-layout .modal .modal-header .header-inner .close svg {
+          background: none;
+          border: none; }
+  html.desktop .modal .modal-body input[type=text], html.desktop .modal .modal-body textarea,
+  html.tablet .modal .modal-body input[type=text],
+  html.tablet .modal .modal-body textarea,
+  html.mobile-layout .modal .modal-body input[type=text],
+  html.mobile-layout .modal .modal-body textarea {
+    min-height: 20px;
+    width: inherit; }
+    html.desktop .modal .modal-body input[type=text].disabled, html.desktop .modal .modal-body input[type=text][readonly], html.desktop .modal .modal-body textarea.disabled, html.desktop .modal .modal-body textarea[readonly],
+    html.tablet .modal .modal-body input[type=text].disabled,
+    html.tablet .modal .modal-body input[type=text][readonly],
+    html.tablet .modal .modal-body textarea.disabled,
+    html.tablet .modal .modal-body textarea[readonly],
+    html.mobile-layout .modal .modal-body input[type=text].disabled,
+    html.mobile-layout .modal .modal-body input[type=text][readonly],
+    html.mobile-layout .modal .modal-body textarea.disabled,
+    html.mobile-layout .modal .modal-body textarea[readonly] {
+      background: #fcfcfc !important; }
+  html.desktop .modal .modal-body .selectize-input input[type=text], html.desktop .modal .modal-body .selectize-input input[type=text]:focus,
+  html.tablet .modal .modal-body .selectize-input input[type=text],
+  html.tablet .modal .modal-body .selectize-input input[type=text]:focus,
+  html.mobile-layout .modal .modal-body .selectize-input input[type=text],
+  html.mobile-layout .modal .modal-body .selectize-input input[type=text]:focus {
+    border: none !important;
+    box-shadow: none !important; }
+  html.desktop .modal .modal-body > div:not(.item-chooser-context) .selectize-input,
+  html.tablet .modal .modal-body > div:not(.item-chooser-context) .selectize-input,
+  html.mobile-layout .modal .modal-body > div:not(.item-chooser-context) .selectize-input {
+    height: 36px;
+    padding: 8px; }
+    html.desktop .modal .modal-body > div:not(.item-chooser-context) .selectize-input.focus,
+    html.tablet .modal .modal-body > div:not(.item-chooser-context) .selectize-input.focus,
+    html.mobile-layout .modal .modal-body > div:not(.item-chooser-context) .selectize-input.focus {
+      box-shadow: 0 0 0 2px #79a9d0 !important; }
+  html.desktop .modal .modal-body .template-selector .select2-selection,
+  html.desktop .modal .modal-body .overview-input .select2-selection,
+  html.tablet .modal .modal-body .template-selector .select2-selection,
+  html.tablet .modal .modal-body .overview-input .select2-selection,
+  html.mobile-layout .modal .modal-body .template-selector .select2-selection,
+  html.mobile-layout .modal .modal-body .overview-input .select2-selection {
+    height: 36px;
+    padding: 4px; }
+    html.desktop .modal .modal-body .template-selector .select2-selection .select2-selection__arrow,
+    html.desktop .modal .modal-body .overview-input .select2-selection .select2-selection__arrow,
+    html.tablet .modal .modal-body .template-selector .select2-selection .select2-selection__arrow,
+    html.tablet .modal .modal-body .overview-input .select2-selection .select2-selection__arrow,
+    html.mobile-layout .modal .modal-body .template-selector .select2-selection .select2-selection__arrow,
+    html.mobile-layout .modal .modal-body .overview-input .select2-selection .select2-selection__arrow {
+      height: 36px; }
+  html.desktop .modal .modal-body .html-text-editor,
+  html.tablet .modal .modal-body .html-text-editor,
+  html.mobile-layout .modal .modal-body .html-text-editor {
+    width: 100%; }
+    html.desktop .modal .modal-body .html-text-editor:focus,
+    html.tablet .modal .modal-body .html-text-editor:focus,
+    html.mobile-layout .modal .modal-body .html-text-editor:focus {
+      padding: 8px; }
+  html.desktop .modal .modal-body hs-popover button:hover svg,
+  html.tablet .modal .modal-body hs-popover button:hover svg,
+  html.mobile-layout .modal .modal-body hs-popover button:hover svg {
+    color: #206fb1;
+    background: white;
+    box-shadow: none; }
+  html.desktop .modal .modal-body hs-popover button:focus,
+  html.desktop .modal .modal-body hs-popover .hs-icon:hover,
+  html.desktop .modal .modal-body hs-popover hs-icon:hover,
+  html.tablet .modal .modal-body hs-popover button:focus,
+  html.tablet .modal .modal-body hs-popover .hs-icon:hover,
+  html.tablet .modal .modal-body hs-popover hs-icon:hover,
+  html.mobile-layout .modal .modal-body hs-popover button:focus,
+  html.mobile-layout .modal .modal-body hs-popover .hs-icon:hover,
+  html.mobile-layout .modal .modal-body hs-popover hs-icon:hover {
+    outline: none; }
+    html.desktop .modal .modal-body hs-popover button:focus svg,
+    html.desktop .modal .modal-body hs-popover .hs-icon:hover svg,
+    html.desktop .modal .modal-body hs-popover hs-icon:hover svg,
+    html.tablet .modal .modal-body hs-popover button:focus svg,
+    html.tablet .modal .modal-body hs-popover .hs-icon:hover svg,
+    html.tablet .modal .modal-body hs-popover hs-icon:hover svg,
+    html.mobile-layout .modal .modal-body hs-popover button:focus svg,
+    html.mobile-layout .modal .modal-body hs-popover .hs-icon:hover svg,
+    html.mobile-layout .modal .modal-body hs-popover hs-icon:hover svg {
+      background: #206fb1;
+      color: white;
+      box-shadow: 0 0 0 1px #206fb1; }
+  html.desktop .modal > .modal-body,
+  html.desktop .modal .modal-form:not(.form-horizontal) .modal-body,
+  html.tablet .modal > .modal-body,
+  html.tablet .modal .modal-form:not(.form-horizontal) .modal-body,
+  html.mobile-layout .modal > .modal-body,
+  html.mobile-layout .modal .modal-form:not(.form-horizontal) .modal-body {
+    padding: 24px; }
+    html.desktop .modal > .modal-body .control-group,
+    html.desktop .modal .modal-form:not(.form-horizontal) .modal-body .control-group,
+    html.tablet .modal > .modal-body .control-group,
+    html.tablet .modal .modal-form:not(.form-horizontal) .modal-body .control-group,
+    html.mobile-layout .modal > .modal-body .control-group,
+    html.mobile-layout .modal .modal-form:not(.form-horizontal) .modal-body .control-group {
+      margin-bottom: 16px; }
+      html.desktop .modal > .modal-body .control-group.relative-container,
+      html.desktop .modal .modal-form:not(.form-horizontal) .modal-body .control-group.relative-container,
+      html.tablet .modal > .modal-body .control-group.relative-container,
+      html.tablet .modal .modal-form:not(.form-horizontal) .modal-body .control-group.relative-container,
+      html.mobile-layout .modal > .modal-body .control-group.relative-container,
+      html.mobile-layout .modal .modal-form:not(.form-horizontal) .modal-body .control-group.relative-container {
+        position: relative; }
+      html.desktop .modal > .modal-body .control-group label.control-label,
+      html.desktop .modal .modal-form:not(.form-horizontal) .modal-body .control-group label.control-label,
+      html.tablet .modal > .modal-body .control-group label.control-label,
+      html.tablet .modal .modal-form:not(.form-horizontal) .modal-body .control-group label.control-label,
+      html.mobile-layout .modal > .modal-body .control-group label.control-label,
+      html.mobile-layout .modal .modal-form:not(.form-horizontal) .modal-body .control-group label.control-label {
+        width: 100% !important;
+        font-weight: 700; }
+      html.desktop .modal > .modal-body .control-group .loader,
+      html.desktop .modal .modal-form:not(.form-horizontal) .modal-body .control-group .loader,
+      html.tablet .modal > .modal-body .control-group .loader,
+      html.tablet .modal .modal-form:not(.form-horizontal) .modal-body .control-group .loader,
+      html.mobile-layout .modal > .modal-body .control-group .loader,
+      html.mobile-layout .modal .modal-form:not(.form-horizontal) .modal-body .control-group .loader {
+        position: absolute;
+        top: 35px;
+        right: 10px; }
+    html.desktop .modal > .modal-body .markdown-property textarea,
+    html.desktop .modal .modal-form:not(.form-horizontal) .modal-body .markdown-property textarea,
+    html.tablet .modal > .modal-body .markdown-property textarea,
+    html.tablet .modal .modal-form:not(.form-horizontal) .modal-body .markdown-property textarea,
+    html.mobile-layout .modal > .modal-body .markdown-property textarea,
+    html.mobile-layout .modal .modal-form:not(.form-horizontal) .modal-body .markdown-property textarea {
+      height: 124px; }
+    html.desktop .modal > .modal-body .markdown-property .markdown-preview,
+    html.desktop .modal .modal-form:not(.form-horizontal) .modal-body .markdown-property .markdown-preview,
+    html.tablet .modal > .modal-body .markdown-property .markdown-preview,
+    html.tablet .modal .modal-form:not(.form-horizontal) .modal-body .markdown-property .markdown-preview,
+    html.mobile-layout .modal > .modal-body .markdown-property .markdown-preview,
+    html.mobile-layout .modal .modal-form:not(.form-horizontal) .modal-body .markdown-property .markdown-preview {
+      padding: 8px;
+      height: 104px !important;
+      width: calc(100% - 18px) !important;
+      background-color: #fcfcfc;
+      border-color: #e3e3e3;
+      border-radius: 4px; }
+    html.desktop .modal > .modal-body .markdown-property a.toggle,
+    html.desktop .modal .modal-form:not(.form-horizontal) .modal-body .markdown-property a.toggle,
+    html.tablet .modal > .modal-body .markdown-property a.toggle,
+    html.tablet .modal .modal-form:not(.form-horizontal) .modal-body .markdown-property a.toggle,
+    html.mobile-layout .modal > .modal-body .markdown-property a.toggle,
+    html.mobile-layout .modal .modal-form:not(.form-horizontal) .modal-body .markdown-property a.toggle {
+      font-weight: normal; }
+    html.desktop .modal > .modal-body textarea,
+    html.desktop .modal > .modal-body div:not(.selectize-input) > input[type=text],
+    html.desktop .modal .modal-form:not(.form-horizontal) .modal-body textarea,
+    html.desktop .modal .modal-form:not(.form-horizontal) .modal-body div:not(.selectize-input) > input[type=text],
+    html.tablet .modal > .modal-body textarea,
+    html.tablet .modal > .modal-body div:not(.selectize-input) > input[type=text],
+    html.tablet .modal .modal-form:not(.form-horizontal) .modal-body textarea,
+    html.tablet .modal .modal-form:not(.form-horizontal) .modal-body div:not(.selectize-input) > input[type=text],
+    html.mobile-layout .modal > .modal-body textarea,
+    html.mobile-layout .modal > .modal-body div:not(.selectize-input) > input[type=text],
+    html.mobile-layout .modal .modal-form:not(.form-horizontal) .modal-body textarea,
+    html.mobile-layout .modal .modal-form:not(.form-horizontal) .modal-body div:not(.selectize-input) > input[type=text] {
+      min-height: 20px;
+      width: 100% !important; }
+    html.desktop .modal > .modal-body select,
+    html.desktop .modal .modal-form:not(.form-horizontal) .modal-body select,
+    html.tablet .modal > .modal-body select,
+    html.tablet .modal .modal-form:not(.form-horizontal) .modal-body select,
+    html.mobile-layout .modal > .modal-body select,
+    html.mobile-layout .modal .modal-form:not(.form-horizontal) .modal-body select {
+      height: 36px !important;
+      width: auto !important;
+      min-width: 50%; }
+    html.desktop .modal > .modal-body .selectize-input,
+    html.desktop .modal .modal-form:not(.form-horizontal) .modal-body .selectize-input,
+    html.tablet .modal > .modal-body .selectize-input,
+    html.tablet .modal .modal-form:not(.form-horizontal) .modal-body .selectize-input,
+    html.mobile-layout .modal > .modal-body .selectize-input,
+    html.mobile-layout .modal .modal-form:not(.form-horizontal) .modal-body .selectize-input {
+      height: 36px;
+      padding: 8px; }
+      html.desktop .modal > .modal-body .selectize-input input[type=text], html.desktop .modal > .modal-body .selectize-input input[type=text]:focus,
+      html.desktop .modal .modal-form:not(.form-horizontal) .modal-body .selectize-input input[type=text],
+      html.desktop .modal .modal-form:not(.form-horizontal) .modal-body .selectize-input input[type=text]:focus,
+      html.tablet .modal > .modal-body .selectize-input input[type=text],
+      html.tablet .modal > .modal-body .selectize-input input[type=text]:focus,
+      html.tablet .modal .modal-form:not(.form-horizontal) .modal-body .selectize-input input[type=text],
+      html.tablet .modal .modal-form:not(.form-horizontal) .modal-body .selectize-input input[type=text]:focus,
+      html.mobile-layout .modal > .modal-body .selectize-input input[type=text],
+      html.mobile-layout .modal > .modal-body .selectize-input input[type=text]:focus,
+      html.mobile-layout .modal .modal-form:not(.form-horizontal) .modal-body .selectize-input input[type=text],
+      html.mobile-layout .modal .modal-form:not(.form-horizontal) .modal-body .selectize-input input[type=text]:focus {
+        border: none !important;
+        box-shadow: none !important; }
+      html.desktop .modal > .modal-body .selectize-input.focus,
+      html.desktop .modal .modal-form:not(.form-horizontal) .modal-body .selectize-input.focus,
+      html.tablet .modal > .modal-body .selectize-input.focus,
+      html.tablet .modal .modal-form:not(.form-horizontal) .modal-body .selectize-input.focus,
+      html.mobile-layout .modal > .modal-body .selectize-input.focus,
+      html.mobile-layout .modal .modal-form:not(.form-horizontal) .modal-body .selectize-input.focus {
+        box-shadow: 0 0 0 2px #79a9d0 !important; }
+    html.desktop .modal > .modal-body .date-input hs-popover,
+    html.desktop .modal .modal-form:not(.form-horizontal) .modal-body .date-input hs-popover,
+    html.tablet .modal > .modal-body .date-input hs-popover,
+    html.tablet .modal .modal-form:not(.form-horizontal) .modal-body .date-input hs-popover,
+    html.mobile-layout .modal > .modal-body .date-input hs-popover,
+    html.mobile-layout .modal .modal-form:not(.form-horizontal) .modal-body .date-input hs-popover {
+      vertical-align: middle;
+      margin: 0 0 0 6px; }
+    html.desktop .modal > .modal-body .date-input .date-input-box,
+    html.desktop .modal .modal-form:not(.form-horizontal) .modal-body .date-input .date-input-box,
+    html.tablet .modal > .modal-body .date-input .date-input-box,
+    html.tablet .modal .modal-form:not(.form-horizontal) .modal-body .date-input .date-input-box,
+    html.mobile-layout .modal > .modal-body .date-input .date-input-box,
+    html.mobile-layout .modal .modal-form:not(.form-horizontal) .modal-body .date-input .date-input-box {
+      height: 36px;
+      border: 1px solid transparent;
+      width: 60%; }
+      html.desktop .modal > .modal-body .date-input .date-input-box input[type=text],
+      html.desktop .modal .modal-form:not(.form-horizontal) .modal-body .date-input .date-input-box input[type=text],
+      html.tablet .modal > .modal-body .date-input .date-input-box input[type=text],
+      html.tablet .modal .modal-form:not(.form-horizontal) .modal-body .date-input .date-input-box input[type=text],
+      html.mobile-layout .modal > .modal-body .date-input .date-input-box input[type=text],
+      html.mobile-layout .modal .modal-form:not(.form-horizontal) .modal-body .date-input .date-input-box input[type=text] {
+        height: 36px;
+        width: calc(100% - 60px) !important; }
+      html.desktop .modal > .modal-body .date-input .date-input-box button,
+      html.desktop .modal .modal-form:not(.form-horizontal) .modal-body .date-input .date-input-box button,
+      html.tablet .modal > .modal-body .date-input .date-input-box button,
+      html.tablet .modal .modal-form:not(.form-horizontal) .modal-body .date-input .date-input-box button,
+      html.mobile-layout .modal > .modal-body .date-input .date-input-box button,
+      html.mobile-layout .modal .modal-form:not(.form-horizontal) .modal-body .date-input .date-input-box button {
+        margin-left: 4px; }
+    html.desktop .modal > .modal-body .date-input .date-input-delete,
+    html.desktop .modal .modal-form:not(.form-horizontal) .modal-body .date-input .date-input-delete,
+    html.tablet .modal > .modal-body .date-input .date-input-delete,
+    html.tablet .modal .modal-form:not(.form-horizontal) .modal-body .date-input .date-input-delete,
+    html.mobile-layout .modal > .modal-body .date-input .date-input-delete,
+    html.mobile-layout .modal .modal-form:not(.form-horizontal) .modal-body .date-input .date-input-delete {
+      right: 62px; }
+    html.desktop .modal > .modal-body .schedule-content .date-input-box,
+    html.desktop .modal .modal-form:not(.form-horizontal) .modal-body .schedule-content .date-input-box,
+    html.tablet .modal > .modal-body .schedule-content .date-input-box,
+    html.tablet .modal .modal-form:not(.form-horizontal) .modal-body .schedule-content .date-input-box,
+    html.mobile-layout .modal > .modal-body .schedule-content .date-input-box,
+    html.mobile-layout .modal .modal-form:not(.form-horizontal) .modal-body .schedule-content .date-input-box {
+      width: 125px; }
+      html.desktop .modal > .modal-body .schedule-content .date-input-box input[type=text],
+      html.desktop .modal .modal-form:not(.form-horizontal) .modal-body .schedule-content .date-input-box input[type=text],
+      html.tablet .modal > .modal-body .schedule-content .date-input-box input[type=text],
+      html.tablet .modal .modal-form:not(.form-horizontal) .modal-body .schedule-content .date-input-box input[type=text],
+      html.mobile-layout .modal > .modal-body .schedule-content .date-input-box input[type=text],
+      html.mobile-layout .modal .modal-form:not(.form-horizontal) .modal-body .schedule-content .date-input-box input[type=text] {
+        width: calc(100% - 26px) !important; }
+    html.desktop .modal > .modal-body .schedule-content .date-input-delete,
+    html.desktop .modal .modal-form:not(.form-horizontal) .modal-body .schedule-content .date-input-delete,
+    html.tablet .modal > .modal-body .schedule-content .date-input-delete,
+    html.tablet .modal .modal-form:not(.form-horizontal) .modal-body .schedule-content .date-input-delete,
+    html.mobile-layout .modal > .modal-body .schedule-content .date-input-delete,
+    html.mobile-layout .modal .modal-form:not(.form-horizontal) .modal-body .schedule-content .date-input-delete {
+      right: 52px; }
+  html.desktop .modal .modal-footer,
+  html.tablet .modal .modal-footer,
+  html.mobile-layout .modal .modal-footer {
+    border-top: none;
+    box-shadow: none;
+    padding: 16px 24px;
+    background: #f0f0f0;
+    border-radius: 0 0 4px 4px;
+    height: 3.6rem;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end; }
+    html.desktop .modal .modal-footer .target-spot,
+    html.desktop .modal .modal-footer .flex-left,
+    html.tablet .modal .modal-footer .target-spot,
+    html.tablet .modal .modal-footer .flex-left,
+    html.mobile-layout .modal .modal-footer .target-spot,
+    html.mobile-layout .modal .modal-footer .flex-left {
+      flex: 1 1 auto;
+      text-align: left;
+      padding-right: 0 !important; }
+    html.desktop .modal .modal-footer .target-spot .control-group,
+    html.tablet .modal .modal-footer .target-spot .control-group,
+    html.mobile-layout .modal .modal-footer .target-spot .control-group {
+      margin-bottom: 0; }
+    html.desktop .modal .modal-footer .target-spot select,
+    html.tablet .modal .modal-footer .target-spot select,
+    html.mobile-layout .modal .modal-footer .target-spot select {
+      min-width: auto;
+      max-width: 250px;
+      height: 36px !important;
+      width: auto !important; }
+    html.desktop .modal .modal-footer .btn,
+    html.tablet .modal .modal-footer .btn,
+    html.mobile-layout .modal .modal-footer .btn {
+      flex: 0 1 auto;
+      width: auto !important;
+      font-size: 1.6rem;
+      font-weight: 700;
+      border-radius: 4px;
+      padding: 7px 11px !important;
+      color: #206fb1 !important;
+      border: solid 1px #206fb1 !important;
+      background-color: white !important;
+      transition: all linear 0.2s;
+      text-transform: none;
+      height: auto; }
+      html.desktop .modal .modal-footer .btn + .btn,
+      html.tablet .modal .modal-footer .btn + .btn,
+      html.mobile-layout .modal .modal-footer .btn + .btn {
+        margin-left: 12px; }
+      html.desktop .modal .modal-footer .btn:focus, html.desktop .modal .modal-footer .btn:hover,
+      html.tablet .modal .modal-footer .btn:focus,
+      html.tablet .modal .modal-footer .btn:hover,
+      html.mobile-layout .modal .modal-footer .btn:focus,
+      html.mobile-layout .modal .modal-footer .btn:hover {
+        background-color: #206fb1 !important;
+        color: #fff !important;
+        outline: none;
+        box-shadow: 0 0 0 2px white inset;
+        text-decoration: none; }
+      html.desktop .modal .modal-footer .btn.btn-primary,
+      html.tablet .modal .modal-footer .btn.btn-primary,
+      html.mobile-layout .modal .modal-footer .btn.btn-primary {
+        color: white !important;
+        border-color: #206fb1 !important;
+        background-color: #206fb1 !important; }
+        html.desktop .modal .modal-footer .btn.btn-primary:focus, html.desktop .modal .modal-footer .btn.btn-primary:hover,
+        html.tablet .modal .modal-footer .btn.btn-primary:focus,
+        html.tablet .modal .modal-footer .btn.btn-primary:hover,
+        html.mobile-layout .modal .modal-footer .btn.btn-primary:focus,
+        html.mobile-layout .modal .modal-footer .btn.btn-primary:hover {
+          box-shadow: 0 0 0 2px white inset; }
+      html.desktop .modal .modal-footer .btn.disabled, html.desktop .modal .modal-footer .btn.disabled:hover, html.desktop .modal .modal-footer .btn.disabled:focus,
+      html.tablet .modal .modal-footer .btn.disabled,
+      html.tablet .modal .modal-footer .btn.disabled:hover,
+      html.tablet .modal .modal-footer .btn.disabled:focus,
+      html.mobile-layout .modal .modal-footer .btn.disabled,
+      html.mobile-layout .modal .modal-footer .btn.disabled:hover,
+      html.mobile-layout .modal .modal-footer .btn.disabled:focus {
+        border-color: #cccccc !important;
+        color: #666666 !important;
+        background-color: rgba(255, 255, 255, 0.5) !important;
+        box-shadow: none; }
+  html.desktop .modal .modal-footer .icon-saving,
+  html.desktop .modal .modal-form .icon-busy,
+  html.tablet .modal .modal-footer .icon-saving,
+  html.tablet .modal .modal-form .icon-busy,
+  html.mobile-layout .modal .modal-footer .icon-saving,
+  html.mobile-layout .modal .modal-form .icon-busy {
+    z-index: 10;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    height: 64px;
+    width: 64px;
+    margin: -32px 0 0 -32px;
+    border-radius: 6px;
+    background-color: rgba(0, 0, 0, 0.4);
+    background-image: url(https://d1ofp9xhvx8afi.cloudfront.net/0c7f9314/img/loading-spinner.gif);
+    background-size: 32px;
+    background-position: center;
+    background-repeat: no-repeat; }
+
+html.mobile-layout .modal#pitch-items .pitch-form .modal-body {
+  height: calc(100vh - 164px) !important; }
+html.mobile-layout .modal#pitch-items .pitch-form.no-footer .modal-body {
+  height: calc(100vh - 98px) !important; }
+html.mobile-layout .modal#pitch-items .pitch-form .modal-footer .mobile-item-count {
+  flex: 1 1 auto; }
+html.mobile-layout .modal#pitch-items .pitch-form .modal-footer .btn.stage.prev,
+html.mobile-layout .modal#pitch-items .pitch-form .modal-footer .btn.stage.next {
+  height: 36px !important;
+  line-height: 2rem !important; }
+  html.mobile-layout .modal#pitch-items .pitch-form .modal-footer .btn.stage.prev .svg-icon,
+  html.mobile-layout .modal#pitch-items .pitch-form .modal-footer .btn.stage.next .svg-icon {
+    margin-right: -8px;
+    margin-top: -4px; }
+html.mobile-layout .modal#pitch-items .pitch-form .modal-footer .btn.stage.prev {
+  height: 20px !important; }
+  html.mobile-layout .modal#pitch-items .pitch-form .modal-footer .btn.stage.prev .svg-icon {
+    margin-left: -8px; }
+
+@media only screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) {
+  html.mobile-layout.app-ios .modal#pitch-items .pitch-form .modal-body {
+    height: calc(100vh - 204px) !important; }
+  html.mobile-layout.app-ios .modal#pitch-items .pitch-form.no-footer .modal-body {
+    height: calc(100vh - 138px) !important; } }
+
+html.mobile-layout .modal#item-chooser .modal-header {
+  height: 24px;
+  padding-top: 12px; }
+  html.mobile-layout .modal#item-chooser .modal-header h3 {
+    border-bottom: none; }
+html.mobile-layout .modal#item-chooser .modal-footer {
+  padding: 16px 24px !important; }
+
+html.mobile-layout .modal .modal-header {
+  height: auto; }
+  html.mobile-layout .modal .modal-header .close {
+    border: none;
+    transition: all linear 0.2s; }
+    html.mobile-layout .modal .modal-header .close:hover, html.mobile-layout .modal .modal-header .close:focus {
+      background: rgba(255, 255, 255, 0.3); }
+html.mobile-layout .modal .modal-header,
+html.mobile-layout .modal .modal-footer {
+  border-radius: 0; }
+html.mobile-layout .modal .modal-footer {
+  text-align: left; }
+  html.mobile-layout .modal .modal-footer .btn {
+    height: auto !important; }
+
+@media only screen and (min-width: 600px) {
+  hs-modal .modal-dialog {
+    width: 600px; } }
+@media only screen and (max-width: 599px) {
+  hs-modal .modal-dialog {
+    width: 375px; }
+
+  .mobile-layout hs-modal .modal-dialog {
+    width: 100%;
+    max-width: 100vw;
+    height: 100%;
+    top: 0;
+    max-height: 100vh;
+    position: fixed;
+    margin-top: 0;
+    transform: translate(-50%, 0); }
+    .mobile-layout hs-modal .modal-dialog header,
+    .mobile-layout hs-modal .modal-dialog footer {
+      border-radius: 0; } }
+body.hs-modal-open {
+  overflow-y: hidden; }
+  body.hs-modal-open .popover {
+    z-index: 1200; }
+
+html.mobile-layout body.app-hosted-ios.hs-modal-open hs-modal header {
+  padding-top: calc(6px + constant(safe-area-inset-top));
+  padding-top: calc(6px + env(safe-area-inset-top)); }
+
+html.mobile-layout body.app-hosted-ios.hs-modal-open hs-modal footer {
+  padding-bottom: calc(constant(safe-area-inset-bottom) - 8px);
+  padding-bottom: calc(env(safe-area-inset-bottom) - 8px); }
+
+@media only screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) {
+  html.mobile-layout body.app-hosted-ios.hs-modal-open hs-modal header {
+    padding-top: calc(constant(safe-area-inset-top));
+    padding-top: calc(env(safe-area-inset-top)); } }
+hs-modal hs-form form {
+  padding: 0 24px;
+  margin: 24px 0;
+  flex: 1; }
+
+hs-form {
+  display: block; }
+
+hs-form * {
+  font-family: ProximaNova, "Helvetica Neue", Helvetica, Arial, sans-serif; }
+
+hs-form form {
+  margin: 0; }
+  hs-form form .form-error {
+    display: none;
+    padding: 12px 8px;
+    margin: 24px 0;
+    border-radius: 4px;
+    border: 1px solid #e9696e;
+    background-color: #fdeeef;
+    color: #e9696e; }
+    hs-form form .form-error:focus {
+      border-color: #206fb1; }
+    hs-form form .form-error .markup {
+      display: inline; }
+    hs-form form .form-error p {
+      margin: 0; }
+
+hs-form[invalid] form .form-error.open {
+  display: block; }
+
+hs-form[alert] form .form-error.open {
+  display: block;
+  border: 1px solid #206fb1;
+  background-color: #eaf2f8;
+  color: #206fb1; }
+
+hs-form form label, hs-form form legend {
+  font-size: 1.3rem;
+  color: #6B6B6B; }
+hs-form form legend {
+  margin-bottom: 0;
+  font-weight: 700; }
+hs-form form fieldset {
+  border: 0;
+  margin: 0;
+  padding: 0; }
+hs-form form .item-preview {
+  margin-bottom: 24px; }
+  hs-form form .item-preview .item-preview__image {
+    margin-left: 0; }
+hs-form form .recipients-list > span:last-child > span:last-child {
+  display: none; }
+
+.alert-error,
+.alert-danger {
+  border: 1px solid #e9696e;
+  background-color: #fdeeef;
+  color: #e9696e; }
+
+hs-button {
+  display: block;
+  font-family: ProximaNova, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  line-height: 1em; }
+  hs-button[disabled] {
+    pointer-events: none; }
+  hs-button .button-text {
+    display: inline-block;
+    margin: 10px 0; }
+  hs-button button {
+    display: inline-block;
+    font-size: 1.6rem;
+    font-weight: 700;
+    border-radius: 4px;
+    padding: 0 14px;
+    border: solid 1px transparent;
+    transition: all linear 0.2s;
+    min-width: 75px; }
+    hs-button button:focus, hs-button button:hover {
+      outline: none; }
+  hs-button.primary button {
+    color: white;
+    border-color: #206fb1;
+    background-color: #206fb1; }
+    hs-button.primary button:focus, hs-button.primary button:hover {
+      box-shadow: 0 0 0 2px white inset; }
+    hs-button.primary button[disabled], hs-button.primary button[disabled]:hover, hs-button.primary button[disabled]:focus {
+      border-color: #cccccc !important;
+      color: #666666 !important;
+      background-color: rgba(255, 255, 255, 0.5) !important;
+      box-shadow: none; }
+  hs-button.secondary button {
+    color: #206fb1;
+    border-color: #206fb1;
+    background-color: white; }
+    hs-button.secondary button:focus, hs-button.secondary button:hover {
+      background-color: #206fb1;
+      color: #fff;
+      box-shadow: 0 0 0 2px white inset; }
+    hs-button.secondary button[disabled], hs-button.secondary button[disabled]:hover, hs-button.secondary button[disabled]:focus {
+      border-color: #cccccc !important;
+      color: #666666 !important;
+      background-color: rgba(255, 255, 255, 0.5) !important;
+      box-shadow: none; }
+
+.popover .popover-title {
+  font-size: 1.3rem;
+  line-height: 1.8rem; }
+
+hs-popover {
+  position: relative;
+  display: inline-block;
+  line-height: 0;
+  height: 15px;
+  vertical-align: text-bottom;
+  margin: 0 6px; }
+  hs-popover button, hs-popover a[rel=popover] {
+    margin: 0;
+    padding: 0;
+    border: none;
+    background: none;
+    color: #206fb1;
+    display: inline-block;
+    line-height: 1.2em; }
+    hs-popover button:focus, hs-popover button:hover, hs-popover a[rel=popover]:focus, hs-popover a[rel=popover]:hover {
+      outline: none; }
+      hs-popover button:focus svg, hs-popover button:hover svg, hs-popover a[rel=popover]:focus svg, hs-popover a[rel=popover]:hover svg {
+        background: #206fb1;
+        color: white;
+        box-shadow: 0 0 0 1px #206fb1; }
+  hs-popover svg {
+    background: white;
+    pointer-events: none;
+    border-radius: 50%; }
+
+.popover__bubble {
+  z-index: 2;
+  display: block;
+  position: absolute;
+  width: 236px;
+  padding: 1px;
+  background-color: white;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 6px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2); }
+  .popover__bubble .popover__arrow:after {
+    z-index: -1;
+    content: ""; }
+  .popover__bubble .popover__arrow,
+  .popover__bubble .popover__arrow:after {
+    position: absolute;
+    display: inline-block;
+    width: 0;
+    height: 0;
+    border-color: transparent;
+    border-style: solid; }
+  .popover__bubble .popover__title {
+    padding: 8px 14px;
+    border-bottom: 1px solid #ebebeb;
+    background-color: #f7f7f7;
+    border-radius: 5px 5px 0 0; }
+    .popover__bubble .popover__title h2 {
+      margin: 0;
+      font-size: 1.3rem;
+      font-weight: normal;
+      line-height: 1.8rem; }
+  .popover__bubble .popover__content {
+    padding: 9px 14px;
+    background-color: white;
+    border-radius: 0 0 3px 3px;
+    background-clip: padding-box;
+    font-size: 1.3rem; }
+    .popover__bubble .popover__content p:last-child,
+    .popover__bubble .popover__content ul:last-child {
+      margin: 0; }
+    .popover__bubble .popover__content p,
+    .popover__bubble .popover__content ol,
+    .popover__bubble .popover__content ul {
+      margin-bottom: 0; }
+    .popover__bubble .popover__content code {
+      font-family: "Courier New", Courier, monospace;
+      color: #444444;
+      font-size: 1.3rem;
+      font-weight: 700; }
+    .popover__bubble .popover__content hr {
+      height: 1px;
+      border: 0;
+      margin: 8px -8px;
+      background-image: linear-gradient(to right, rgba(128, 128, 128, 0.25), rgba(128, 128, 128, 0.75), rgba(128, 128, 128, 0.25)); }
+
+.popover__bubble[x-placement=right] {
+  transform: translate(16px, calc( -50% - 8px));
+  margin-left: 10px; }
+  .popover__bubble[x-placement=right] .popover__arrow {
+    top: 50%;
+    left: -10px;
+    margin-top: -10px;
+    border-right-color: #ffffff;
+    border-width: 10px 10px 10px 0; }
+    .popover__bubble[x-placement=right] .popover__arrow:after {
+      bottom: -11px;
+      left: -1px;
+      border-right-color: rgba(0, 0, 0, 0.1);
+      border-width: 11px 11px 11px 0; }
+.popover__bubble[x-placement=left] {
+  transform: translate(-100%, calc( -50% - 8px));
+  margin-left: -10px; }
+  .popover__bubble[x-placement=left] .popover__arrow {
+    top: 50%;
+    right: -10px;
+    margin-top: -10px;
+    border-left-color: #ffffff;
+    border-width: 10px 0 10px 10px; }
+    .popover__bubble[x-placement=left] .popover__arrow:after {
+      bottom: -11px;
+      right: -1px;
+      border-left-color: rgba(0, 0, 0, 0.1);
+      border-width: 11px 0 11px 11px; }
+.popover__bubble[x-out-of-boundaries] {
+  display: none; }
+
+hs-icon svg, .hs-icon svg {
+  fill: currentColor;
+  overflow: visible;
+  transition: border-color 150ms ease-in-out, color 150ms ease-in-out, background-color 150ms ease-in-out;
+  height: 100%;
+  width: 100%; }
+
+hs-icon[size=standard], .hs-icon[size=standard] {
+  height: 36px;
+  width: 36px; }
+
+hs-icon[size=xx-small], .hs-icon[size=xx-small] {
+  height: 6px;
+  width: 6px; }
+
+hs-icon[size=x-small], .hs-icon[size=x-small] {
+  height: 12px;
+  width: 12px; }
+
+hs-icon[size=small], .hs-icon[size=small] {
+  height: 16px;
+  width: 16px; }
+
+hs-icon[size=medium], .hs-icon[size=medium] {
+  height: 24px;
+  width: 24px; }
+
+hs-icon[size=large], .hs-icon[size=large] {
+  height: 64px;
+  width: 64px; }
+
+hs-icon[size=large-thumb], .hs-icon[size=large-thumb] {
+  height: 150px;
+  width: 150px; }
+
+hs-icon[size=small-thumb], .hs-icon[size=small-thumb] {
+  height: 80px;
+  width: 80px; }
+
+hs-icon, .hs-icon {
+  line-height: 0;
+  display: inline-block; }
+  hs-icon > .hsicon__wrapper, .hs-icon > .hsicon__wrapper {
+    width: 100%;
+    height: 100%; }
+  hs-icon[circle] > .hsicon__wrapper, .hs-icon[circle] > .hsicon__wrapper {
+    border: solid 1px;
+    border-radius: 50%;
+    box-sizing: border-box;
+    overflow: hidden; }
+  hs-icon[circle].action-light svg, .hs-icon[circle].action-light svg {
+    background-color: #79a9d0; }
+  hs-icon[circle].invert > .hsicon__wrapper, .hs-icon[circle].invert > .hsicon__wrapper {
+    border-color: #79a9d0; }
+  hs-icon[circle].invert svg, .hs-icon[circle].invert svg {
+    background-color: white;
+    color: #206fb1; }
+  hs-icon[circle].primary > .hsicon__wrapper, .hs-icon[circle].primary > .hsicon__wrapper {
+    border-color: #206fb1; }
+  hs-icon[circle].primary svg, .hs-icon[circle].primary svg {
+    background-color: white;
+    color: #206fb1; }
+  hs-icon[circle].solid > .hsicon__wrapper, .hs-icon[circle].solid > .hsicon__wrapper {
+    border-color: white; }
+  hs-icon[circle].solid svg, .hs-icon[circle].solid svg {
+    background-color: #206fb1;
+    color: white; }
+  hs-icon[circle].smoked, .hs-icon[circle].smoked {
+    border-color: rgba(255, 255, 255, 0.4); }
+    hs-icon[circle].smoked svg, .hs-icon[circle].smoked svg {
+      background-color: rgba(0, 0, 0, 0.4);
+      color: white; }
+  hs-icon[circle] svg, .hs-icon[circle] svg {
+    background-color: #fff;
+    padding: 23%;
+    overflow: visible;
+    box-sizing: border-box; }
+  hs-icon.caret--ascend svg, .hs-icon.caret--ascend svg {
+    transform: rotate(90deg); }
+  hs-icon.caret--descend svg, .hs-icon.caret--descend svg {
+    transform: rotate(-90deg); }
+  hs-icon.primary, .hs-icon.primary {
+    color: #206fb1; }
+  hs-icon.issue, .hs-icon.issue {
+    color: #e9696e; }
+  hs-icon.alerting, .hs-icon.alerting {
+    color: #fcb95b; }
+  hs-icon.warning, hs-icon.new, .hs-icon.warning, .hs-icon.new {
+    color: #ff7f66; }
+  hs-icon.success, .hs-icon.success {
+    color: #4bc076; }
+  hs-icon.disabled, button[disabled] hs-icon, .hs-icon.disabled, button[disabled] .hs-icon {
+    color: gray; }
+  hs-icon .doc-icon, .hs-icon .doc-icon {
+    height: 16px;
+    width: 16px; }
+
+.hs-icon-button {
+  width: auto;
+  height: 32px;
+  background: none;
+  color: #206fb1;
+  padding: 2px; }
+  .hs-icon-button .hs-icon[circle] {
+    border-radius: 50%; }
+    .hs-icon-button .hs-icon[circle] svg {
+      padding: 4px; }
+  .hs-icon-button.no-circle .hs-icon[circle] .hsicon__wrapper {
+    border-color: transparent; }
+  .hs-icon-button.no-circle .hs-icon[circle] svg {
+    color: inherit;
+    background-color: transparent; }
+  .hs-icon-button.no-circle:hover .hs-icon[circle] .hsicon__wrapper, .hs-icon-button.no-circle:focus .hs-icon[circle] .hsicon__wrapper {
+    border-color: inherit; }
+  .hs-icon-button span {
+    padding-left: 8px;
+    white-space: nowrap; }
+  .hs-icon-button:hover .hs-icon svg {
+    color: white;
+    background-color: #206fb1; }
+  .hs-icon-button:focus .hs-icon {
+    box-shadow: 0 0 0 2px #79a9d0; }
+  .hs-icon-button .hs-icon[icon=delete] {
+    color: #e9696e; }
+  .hs-icon-button:hover .hs-icon[icon=delete] svg {
+    background-color: #e9696e; }
+  .hs-icon-button:focus .hs-icon[icon=delete] {
+    box-shadow: 0 0 0 2px #f3acae; }
+  .hs-icon-button[disabled] {
+    cursor: not-allowed;
+    color: gray; }
+    .hs-icon-button[disabled] .hs-icon[icon=delete] {
+      color: gray; }
+    .hs-icon-button[disabled]:hover .hs-icon svg {
+      color: gray;
+      background-color: white; }
+    .hs-icon-button[disabled]:focus .hs-icon {
+      box-shadow: none; }
+
+hs-checkbox, hs-radio, hs-textinput, hs-selectize, hs-textarea, hs-markdown, hs-selector {
+  display: block;
+  margin: 16px 0; }
+  hs-checkbox .info, hs-radio .info, hs-textinput .info, hs-selectize .info, hs-textarea .info, hs-markdown .info, hs-selector .info {
+    display: inline-block;
+    margin-left: 4px;
+    line-height: 0; }
+    hs-checkbox .info a .svg-icon, hs-radio .info a .svg-icon, hs-textinput .info a .svg-icon, hs-selectize .info a .svg-icon, hs-textarea .info a .svg-icon, hs-markdown .info a .svg-icon, hs-selector .info a .svg-icon {
+      border-radius: 8px; }
+    hs-checkbox .info a:focus, hs-radio .info a:focus, hs-textinput .info a:focus, hs-selectize .info a:focus, hs-textarea .info a:focus, hs-markdown .info a:focus, hs-selector .info a:focus {
+      outline: none; }
+      hs-checkbox .info a:focus .svg-icon, hs-radio .info a:focus .svg-icon, hs-textinput .info a:focus .svg-icon, hs-selectize .info a:focus .svg-icon, hs-textarea .info a:focus .svg-icon, hs-markdown .info a:focus .svg-icon, hs-selector .info a:focus .svg-icon {
+        color: white;
+        background: #206fb1;
+        box-shadow: 0 0 0 1px #206fb1; }
+  hs-checkbox .error, hs-radio .error, hs-textinput .error, hs-selectize .error, hs-textarea .error, hs-markdown .error, hs-selector .error {
+    color: #e9696e;
+    margin-top: 12px;
+    font-size: 1.3rem;
+    line-height: 1em; }
+    hs-checkbox .error .markup, hs-radio .error .markup, hs-textinput .error .markup, hs-selectize .error .markup, hs-textarea .error .markup, hs-markdown .error .markup, hs-selector .error .markup {
+      display: inline; }
+  hs-checkbox .input-details, hs-radio .input-details, hs-textinput .input-details, hs-selectize .input-details, hs-textarea .input-details, hs-markdown .input-details, hs-selector .input-details {
+    margin-bottom: 12px;
+    height: 1.3rem; }
+    hs-checkbox .input-details label, hs-radio .input-details label, hs-textinput .input-details label, hs-selectize .input-details label, hs-textarea .input-details label, hs-markdown .input-details label, hs-selector .input-details label {
+      color: #686868;
+      font-weight: 700;
+      margin-bottom: 0;
+      font-size: 1.3rem;
+      line-height: inherit;
+      transition: all linear 0.2s; }
+      hs-checkbox .input-details label .req-sym, hs-radio .input-details label .req-sym, hs-textinput .input-details label .req-sym, hs-selectize .input-details label .req-sym, hs-textarea .input-details label .req-sym, hs-markdown .input-details label .req-sym, hs-selector .input-details label .req-sym {
+        color: #e9696e; }
+
+html.desktop .modal .modal-body input[type=text], html.desktop .modal .modal-body textarea,
+html.tablet .modal .modal-body input[type=text],
+html.tablet .modal .modal-body textarea,
+html.mobile-layout .modal .modal-body input[type=text],
+html.mobile-layout .modal .modal-body textarea,
+html.desktop .modal > .modal-body div:not(.selectize-input) > input[type=text],
+html.desktop .modal .modal-form:not(.form-horizontal) .modal-body textarea,
+html.desktop .modal .modal-form:not(.form-horizontal) .modal-body div:not(.selectize-input) > input[type=text],
+html.tablet .modal > .modal-body div:not(.selectize-input) > input[type=text],
+html.tablet .modal .modal-form:not(.form-horizontal) .modal-body textarea,
+html.tablet .modal .modal-form:not(.form-horizontal) .modal-body div:not(.selectize-input) > input[type=text],
+html.mobile-layout .modal > .modal-body div:not(.selectize-input) > input[type=text],
+html.mobile-layout .modal .modal-form:not(.form-horizontal) .modal-body textarea,
+html.mobile-layout .modal .modal-form:not(.form-horizontal) .modal-body div:not(.selectize-input) > input[type=text], html.desktop .modal > .modal-body select,
+html.desktop .modal .modal-form:not(.form-horizontal) .modal-body select,
+html.tablet .modal > .modal-body select,
+html.tablet .modal .modal-form:not(.form-horizontal) .modal-body select,
+html.mobile-layout .modal > .modal-body select,
+html.mobile-layout .modal .modal-form:not(.form-horizontal) .modal-body select, html.desktop .modal .modal-footer .target-spot select,
+html.tablet .modal .modal-footer .target-spot select,
+html.mobile-layout .modal .modal-footer .target-spot select, hs-textinput input[type=text], hs-selectize .selectize-input, hs-selectize .selectize-input input[type=text]:focus, hs-textarea textarea[id], hs-markdown textarea[id], hs-markdown .preview, hs-selector select, hs-selector button[aria-haspopup], .popper-options ul {
+  font-size: 1.3rem;
+  line-height: 1.8rem;
+  height: auto;
+  margin-bottom: 0;
+  color: #686868;
+  background-color: white; }
+  html.desktop .modal .modal-body input[type=text]::placeholder, html.desktop .modal .modal-body textarea::placeholder,
+  html.tablet .modal .modal-body input[type=text]::placeholder,
+  html.tablet .modal .modal-body textarea::placeholder,
+  html.mobile-layout .modal .modal-body input[type=text]::placeholder,
+  html.mobile-layout .modal .modal-body textarea::placeholder,
+  html.desktop .modal > .modal-body div:not(.selectize-input) > input[type=text]::placeholder,
+  html.desktop .modal .modal-form:not(.form-horizontal) .modal-body textarea::placeholder,
+  html.desktop .modal .modal-form:not(.form-horizontal) .modal-body div:not(.selectize-input) > input[type=text]::placeholder,
+  html.tablet .modal > .modal-body div:not(.selectize-input) > input[type=text]::placeholder,
+  html.tablet .modal .modal-form:not(.form-horizontal) .modal-body textarea::placeholder,
+  html.tablet .modal .modal-form:not(.form-horizontal) .modal-body div:not(.selectize-input) > input[type=text]::placeholder,
+  html.mobile-layout .modal > .modal-body div:not(.selectize-input) > input[type=text]::placeholder,
+  html.mobile-layout .modal .modal-form:not(.form-horizontal) .modal-body textarea::placeholder,
+  html.mobile-layout .modal .modal-form:not(.form-horizontal) .modal-body div:not(.selectize-input) > input[type=text]::placeholder, html.desktop .modal > .modal-body select::placeholder,
+  html.desktop .modal .modal-form:not(.form-horizontal) .modal-body select::placeholder,
+  html.tablet .modal > .modal-body select::placeholder,
+  html.tablet .modal .modal-form:not(.form-horizontal) .modal-body select::placeholder,
+  html.mobile-layout .modal > .modal-body select::placeholder,
+  html.mobile-layout .modal .modal-form:not(.form-horizontal) .modal-body select::placeholder, html.desktop .modal .modal-footer .target-spot select::placeholder,
+  html.tablet .modal .modal-footer .target-spot select::placeholder,
+  html.mobile-layout .modal .modal-footer .target-spot select::placeholder, hs-textinput input[type=text]::placeholder, hs-selectize .selectize-input::placeholder, hs-selectize .selectize-input input[type=text]:focus::placeholder, hs-textarea textarea[id]::placeholder, hs-markdown textarea[id]::placeholder, hs-markdown .preview::placeholder, hs-selector select::placeholder, hs-selector button[aria-haspopup]::placeholder, .popper-options ul::placeholder {
+    color: #898989; }
+
+html.desktop .modal .modal-body input[type=text], html.desktop .modal .modal-body textarea,
+html.tablet .modal .modal-body input[type=text],
+html.tablet .modal .modal-body textarea,
+html.mobile-layout .modal .modal-body input[type=text],
+html.mobile-layout .modal .modal-body textarea,
+html.desktop .modal > .modal-body div:not(.selectize-input) > input[type=text],
+html.desktop .modal .modal-form:not(.form-horizontal) .modal-body textarea,
+html.desktop .modal .modal-form:not(.form-horizontal) .modal-body div:not(.selectize-input) > input[type=text],
+html.tablet .modal > .modal-body div:not(.selectize-input) > input[type=text],
+html.tablet .modal .modal-form:not(.form-horizontal) .modal-body textarea,
+html.tablet .modal .modal-form:not(.form-horizontal) .modal-body div:not(.selectize-input) > input[type=text],
+html.mobile-layout .modal > .modal-body div:not(.selectize-input) > input[type=text],
+html.mobile-layout .modal .modal-form:not(.form-horizontal) .modal-body textarea,
+html.mobile-layout .modal .modal-form:not(.form-horizontal) .modal-body div:not(.selectize-input) > input[type=text], html.desktop .modal > .modal-body select,
+html.desktop .modal .modal-form:not(.form-horizontal) .modal-body select,
+html.tablet .modal > .modal-body select,
+html.tablet .modal .modal-form:not(.form-horizontal) .modal-body select,
+html.mobile-layout .modal > .modal-body select,
+html.mobile-layout .modal .modal-form:not(.form-horizontal) .modal-body select, html.desktop .modal .modal-footer .target-spot select,
+html.tablet .modal .modal-footer .target-spot select,
+html.mobile-layout .modal .modal-footer .target-spot select, hs-textinput input[type=text], hs-selectize .selectize-input, hs-selectize .selectize-input input[type=text]:focus, hs-textarea textarea[id], hs-markdown textarea[id], hs-markdown .preview, hs-selector select, hs-selector button[aria-haspopup], .popper-options ul {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 8px;
+  border: solid 1px #79a9d0;
+  border-radius: 4px; }
+
+hs-textinput[disabled] input[type=text], hs-textinput[readonly] input[type=text], hs-selectize[disabled] input[type=text], hs-selectize[readonly] input[type=text], hs-textarea[disabled] textarea[id], hs-textarea[readonly] textarea[id], hs-markdown[disabled] textarea[id], hs-markdown[readonly] textarea[id] {
+  background: #fcfcfc; }
+
+hs-checkbox[invalid] select, hs-radio[invalid] select, hs-textinput[invalid] input[type=text], hs-selectize[invalid] .selectize-input, hs-textarea[invalid] textarea[id], hs-markdown[invalid] textarea[id], hs-selector[invalid] select,
+hs-selector[invalid] button[aria-haspopup] {
+  border: solid 1px #e9696e; }
+
+hs-checkbox[invalid] .input-details .info, hs-radio[invalid] .input-details .info, hs-textinput[invalid] .input-details .info, hs-selectize[invalid] .input-details .info, hs-textarea[invalid] .input-details .info, hs-markdown[invalid] .input-details .info, hs-selector[invalid] .input-details .info {
+  display: none;
+  line-height: 0; }
+
+html.desktop .modal .modal-body input[type=text]:focus, html.desktop .modal .modal-body textarea:focus,
+html.tablet .modal .modal-body input[type=text]:focus,
+html.tablet .modal .modal-body textarea:focus,
+html.mobile-layout .modal .modal-body input[type=text]:focus,
+html.mobile-layout .modal .modal-body textarea:focus, html.desktop .modal .modal-body > div:not(.item-chooser-context) .selectize-input.focus,
+html.tablet .modal .modal-body > div:not(.item-chooser-context) .selectize-input.focus,
+html.mobile-layout .modal .modal-body > div:not(.item-chooser-context) .selectize-input.focus, html.desktop .modal .modal-body .template-selector .select2-selection:focus,
+html.desktop .modal .modal-body .overview-input .select2-selection:focus,
+html.tablet .modal .modal-body .template-selector .select2-selection:focus,
+html.tablet .modal .modal-body .overview-input .select2-selection:focus,
+html.mobile-layout .modal .modal-body .template-selector .select2-selection:focus,
+html.mobile-layout .modal .modal-body .overview-input .select2-selection:focus, html.desktop .modal .modal-body .rich-text-editor:focus,
+html.tablet .modal .modal-body .rich-text-editor:focus,
+html.mobile-layout .modal .modal-body .rich-text-editor:focus,
+html.desktop .modal > .modal-body div:not(.selectize-input) > input[type=text]:focus,
+html.desktop .modal .modal-form:not(.form-horizontal) .modal-body textarea:focus,
+html.desktop .modal .modal-form:not(.form-horizontal) .modal-body div:not(.selectize-input) > input[type=text]:focus,
+html.tablet .modal > .modal-body div:not(.selectize-input) > input[type=text]:focus,
+html.tablet .modal .modal-form:not(.form-horizontal) .modal-body textarea:focus,
+html.tablet .modal .modal-form:not(.form-horizontal) .modal-body div:not(.selectize-input) > input[type=text]:focus,
+html.mobile-layout .modal > .modal-body div:not(.selectize-input) > input[type=text]:focus,
+html.mobile-layout .modal .modal-form:not(.form-horizontal) .modal-body textarea:focus,
+html.mobile-layout .modal .modal-form:not(.form-horizontal) .modal-body div:not(.selectize-input) > input[type=text]:focus, html.desktop .modal > .modal-body select:focus,
+html.desktop .modal .modal-form:not(.form-horizontal) .modal-body select:focus,
+html.tablet .modal > .modal-body select:focus,
+html.tablet .modal .modal-form:not(.form-horizontal) .modal-body select:focus,
+html.mobile-layout .modal > .modal-body select:focus,
+html.mobile-layout .modal .modal-form:not(.form-horizontal) .modal-body select:focus, html.desktop .modal > .modal-body .selectize-input.focus,
+html.desktop .modal .modal-form:not(.form-horizontal) .modal-body .selectize-input.focus,
+html.tablet .modal > .modal-body .selectize-input.focus,
+html.tablet .modal .modal-form:not(.form-horizontal) .modal-body .selectize-input.focus,
+html.mobile-layout .modal > .modal-body .selectize-input.focus,
+html.mobile-layout .modal .modal-form:not(.form-horizontal) .modal-body .selectize-input.focus, html.desktop .modal .modal-footer .target-spot select:focus,
+html.tablet .modal .modal-footer .target-spot select:focus,
+html.mobile-layout .modal .modal-footer .target-spot select:focus, hs-textinput input[type=text]:focus, hs-selectize .selectize-input.focus, hs-textarea textarea[id]:focus, hs-markdown textarea[id]:focus, hs-markdown[preview] .preview:focus, hs-selector select:focus, hs-selector button[aria-haspopup]:focus {
+  outline: 0;
+  border: solid 1px #206fb1 !important;
+  box-shadow: 0 0 0 2px #79a9d0 !important; }
+
+hs-checkbox[focus] .input-details label, hs-radio[focus] .input-details label {
+  color: #206fb1; }
+
+hs-textinput[invalid] input[type=text]:focus, hs-selectize[invalid] .selectize-input.focus, hs-textarea[invalid] textarea[id]:focus, hs-markdown[invalid] textarea[id]:focus, hs-selector[invalid] select:focus,
+hs-selector[invalid] button[aria-haspopup]:focus {
+  outline: 0;
+  border: solid 1px #e9696e !important;
+  box-shadow: 0 0 0 2px #d59392 !important; }
+
+hs-checkbox label.checkbox, hs-checkbox label.radio, hs-radio label.checkbox, hs-radio label.radio {
+  width: fit-content;
+  font-size: 1.3rem;
+  display: flex;
+  padding: 4px 0 0 0; }
+  hs-checkbox label.checkbox .info, hs-checkbox label.radio .info, hs-radio label.checkbox .info, hs-radio label.radio .info {
+    display: flex;
+    align-items: center; }
+hs-checkbox button[role=checkbox], hs-checkbox button[role=radio], hs-radio button[role=checkbox], hs-radio button[role=radio] {
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center; }
+  hs-checkbox button[role=checkbox] svg, hs-checkbox button[role=radio] svg, hs-radio button[role=checkbox] svg, hs-radio button[role=radio] svg {
+    width: 18px;
+    height: 18px;
+    margin: 1px 8px 1px 1px;
+    fill: #206fb1;
+    background-color: white; }
+  hs-checkbox button[role=checkbox]:focus, hs-checkbox button[role=radio]:focus, hs-radio button[role=checkbox]:focus, hs-radio button[role=radio]:focus {
+    outline: none; }
+hs-checkbox button[role=checkbox] svg, hs-radio button[role=checkbox] svg {
+  border-radius: 3px; }
+hs-checkbox button[role=radio] svg, hs-radio button[role=radio] svg {
+  border-radius: 12px; }
+hs-checkbox[focus] label.checkbox, hs-checkbox[focus] label.radio, hs-radio[focus] label.checkbox, hs-radio[focus] label.radio {
+  color: #206fb1; }
+hs-checkbox[focus] button svg, hs-radio[focus] button svg {
+  box-shadow: 0 0 0 1px #79a9d0; }
+hs-checkbox[disabled] label.checkbox, hs-checkbox[disabled] label.radio, hs-radio[disabled] label.checkbox, hs-radio[disabled] label.radio {
+  color: #666666; }
+hs-checkbox[disabled] button, hs-radio[disabled] button {
+  cursor: not-allowed; }
+  hs-checkbox[disabled] button svg, hs-radio[disabled] button svg {
+    fill: #666666;
+    background-color: #f1f1f1;
+    box-shadow: none; }
+
+.control-group > label,
+.checkbox-group > label,
+[role=radiogroup] > label {
+  font-weight: 700; }
+.control-group hs-checkbox, .control-group hs-radio,
+.checkbox-group hs-checkbox,
+.checkbox-group hs-radio,
+[role=radiogroup] hs-checkbox,
+[role=radiogroup] hs-radio {
+  margin: 0px; }
+
+hs-textinput input[type=text] {
+  min-height: 20px; }
+
+hs-selectize .selectize-input {
+  max-width: initial;
+  min-height: 38px;
+  padding: 8px 8px 4px 8px; }
+  hs-selectize .selectize-input input[type=text]:focus {
+    border: transparent !important; }
+hs-selectize[invalid] .error {
+  margin-top: 7px; }
+
+hs-textarea textarea[id], hs-markdown textarea[id] {
+  resize: none;
+  min-height: 20px; }
+  hs-textarea textarea[id] .resize, hs-markdown textarea[id] .resize {
+    resize: vertical; }
+
+hs-markdown {
+  position: relative; }
+  hs-markdown textarea {
+    display: block; }
+  hs-markdown .preview-toggle {
+    color: #206fb1;
+    font-size: 1.3rem; }
+    hs-markdown .preview-toggle:hover {
+      cursor: pointer; }
+    hs-markdown .preview-toggle:focus {
+      outline: none;
+      text-decoration: underline; }
+  hs-markdown .preview {
+    display: none;
+    background: #fcfcfc;
+    overflow: auto; }
+  hs-markdown[preview] textarea {
+    display: none; }
+  hs-markdown[preview] .preview {
+    display: block; }
+
+hs-selector {
+  width: 100%; }
+  hs-selector .select {
+    display: inline-block;
+    width: 100%;
+    position: relative; }
+    hs-selector .select.hide-arrow select {
+      padding-right: 8px; }
+    hs-selector .select.hide-arrow .select-arrow {
+      display: none; }
+  hs-selector select {
+    cursor: pointer;
+    width: 100%;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    text-indent: 0.01px;
+    padding-right: 36px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    background-image: none; }
+  hs-selector .select-arrow {
+    display: block;
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    margin-top: -10px;
+    pointer-events: none;
+    color: #206fb1; }
+    hs-selector .select-arrow svg {
+      transform: rotate(90deg);
+      height: 20px;
+      width: 20px; }
+  hs-selector button[aria-haspopup] {
+    width: 100%;
+    text-align: left;
+    padding-right: 36px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; }
+    hs-selector button[aria-haspopup]:disabled {
+      border: 1px solid gray;
+      color: gray; }
+  hs-selector[disabled] select,
+  hs-selector[disabled] button[aria-haspopup], hs-selector[busy] select,
+  hs-selector[busy] button[aria-haspopup] {
+    border: 1px solid gray;
+    color: gray; }
+  hs-selector[disabled] .select-arrow, hs-selector[busy] .select-arrow {
+    color: gray; }
+  hs-selector .description {
+    display: inline-block;
+    vertical-align: middle;
+    line-height: 0;
+    margin-left: 8px; }
+
+@media only screen and (min-width: 600px) {
+  hs-selector .select {
+    min-width: 50%;
+    width: auto;
+    max-width: 100%; } }
+.selectize-input {
+  border: solid 1px #79a9d0; }
+
+.popper-options {
+  min-width: 240px;
+  max-width: calc(100% - 48px);
+  z-index: 1030; }
+  .popper-options[x-out-of-boundaries] {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    border: 0;
+    padding: 0;
+    white-space: nowrap;
+    clip-path: inset(100%);
+    clip: rect(0 0 0 0);
+    overflow: hidden; }
+  .popper-options ul {
+    background: white;
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 8px 0;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+    overflow: auto; }
+    hs-modal .popper-options ul {
+      max-height: 150px; }
+    .popper-options ul:focus {
+      outline: none; }
+    .popper-options ul[aria-hidden=true] {
+      display: none; }
+    .popper-options ul li {
+      display: block;
+      padding: 8px;
+      color: #686868;
+      line-height: 1em;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis; }
+      .popper-options ul li .hs-icon[icon=check] {
+        margin-right: 8px;
+        visibility: hidden; }
+      .popper-options ul li[aria-selected=true] .hs-icon[icon=check] {
+        visibility: visible; }
+        .popper-options ul li[aria-selected=true] .hs-icon[icon=check] svg {
+          transition: none; }
+      .popper-options ul li.focused {
+        background: #206fb1;
+        color: white; }
+
+hs-modal .popper-options {
+  min-width: calc(50% - 24px); }
+
+body:not(.skiplinks-shown) hs-skiplinks {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  white-space: nowrap;
+  clip-path: inset(100%);
+  clip: rect(0 0 0 0);
+  overflow: hidden; }
+body.skiplinks-shown hs-skiplinks {
+  position: fixed;
+  overflow: visible;
+  z-index: 1036;
+  width: 24rem;
+  height: calc(24rem * .5);
+  padding-top: calc(24rem * .5);
+  top: calc(-24rem * .5);
+  left: 50vw;
+  transform: translateX(-50%);
+  background: white;
+  border-radius: 50%;
+  border: solid 2px #ff7f66;
+  box-shadow: 0 0 10px 0 grey;
+  text-align: center; }
+hs-skiplinks p {
+  margin: 0.75em 1em 0; }
+  hs-skiplinks p .keycap {
+    display: inline-block;
+    border: solid 1px dimgray;
+    background: gainsboro;
+    border-radius: 6px;
+    padding: 0 3px;
+    min-width: 10px; }
+hs-skiplinks h2 {
+  font-size: 2rem;
+  font-weight: normal;
+  color: #206fb1; }
+
+body.skiplinks-overlay header#hs-app-bar .navbar-inner:after, body.skiplinks-overlay header#hs-app-bar .navbar-inner:before, body.skiplinks-overlay header#hs-app-bar:before, body.skiplinks-overlay header#hs-app-bar:after, body.skiplinks-overlay .sidebar:after, body.skiplinks-overlay main #content-inner:after, body.skiplinks-overlay.reader-open .header-bar:after, body.skiplinks-overlay.reader-open #reader-content:after, body.skiplinks-overlay.reader-open #reader-sidebar:after,
+body.skiplinks-overlay .reader-modal .header-bar:after,
+body.skiplinks-overlay .reader-modal #reader-content:after,
+body.skiplinks-overlay .reader-modal #reader-sidebar:after, html body.focus-landmark header#hs-app-bar:focus:after,
+html body.focus-landmark .sidebar:focus:after,
+html body.focus-landmark main:focus #content-inner:after, html body.focus-landmark.reader-open .header-bar:focus:after, html body.focus-landmark.reader-open #reader-content:focus:after, html body.focus-landmark.reader-open #reader-sidebar:focus:after,
+html body.focus-landmark .reader-modal .header-bar:focus:after,
+html body.focus-landmark .reader-modal #reader-content:focus:after,
+html body.focus-landmark .reader-modal #reader-sidebar:focus:after {
+  position: absolute;
+  display: block;
+  content: " ";
+  width: 100%;
+  top: 0;
+  height: 100%;
+  overflow: hidden;
+  box-sizing: border-box;
+  z-index: 99;
+  transition: border 0.5s, opacity 0.5s, background 0.5s; }
+
+body.skiplinks-overlay header#hs-app-bar .navbar-inner:after, body.skiplinks-overlay .sidebar:after, body.skiplinks-overlay main #content-inner:after, body.skiplinks-overlay.reader-open .header-bar:after, body.skiplinks-overlay.reader-open #reader-content:after, body.skiplinks-overlay.reader-open #reader-sidebar:after,
+body.skiplinks-overlay .reader-modal .header-bar:after,
+body.skiplinks-overlay .reader-modal #reader-content:after,
+body.skiplinks-overlay .reader-modal #reader-sidebar:after, body.skiplinks-overlay header#hs-app-bar.overlay-highlight.navbar:before,
+body.skiplinks-overlay header#hs-app-bar .navbar-inner.overlay-highlight.navbar:before,
+body.skiplinks-overlay .sidebar.overlay-highlight.navbar:before,
+body.skiplinks-overlay main #content-inner.overlay-highlight.navbar:before, body.skiplinks-overlay.reader-open .header-bar.overlay-highlight.navbar:before, body.skiplinks-overlay.reader-open #reader-content.overlay-highlight.navbar:before, body.skiplinks-overlay.reader-open #reader-sidebar.overlay-highlight.navbar:before,
+body.skiplinks-overlay .reader-modal .header-bar.overlay-highlight.navbar:before,
+body.skiplinks-overlay .reader-modal #reader-content.overlay-highlight.navbar:before,
+body.skiplinks-overlay .reader-modal #reader-sidebar.overlay-highlight.navbar:before, body.skiplinks-overlay header#hs-app-bar.overlay-highlight.navbar .navbar-inner:before,
+body.skiplinks-overlay header#hs-app-bar .navbar-inner.overlay-highlight.navbar .navbar-inner:before,
+body.skiplinks-overlay .sidebar.overlay-highlight.navbar .navbar-inner:before,
+body.skiplinks-overlay main #content-inner.overlay-highlight.navbar .navbar-inner:before, body.skiplinks-overlay.reader-open .header-bar.overlay-highlight.navbar .navbar-inner:before, body.skiplinks-overlay.reader-open #reader-content.overlay-highlight.navbar .navbar-inner:before, body.skiplinks-overlay.reader-open #reader-sidebar.overlay-highlight.navbar .navbar-inner:before,
+body.skiplinks-overlay .reader-modal .header-bar.overlay-highlight.navbar .navbar-inner:before,
+body.skiplinks-overlay .reader-modal #reader-content.overlay-highlight.navbar .navbar-inner:before,
+body.skiplinks-overlay .reader-modal #reader-sidebar.overlay-highlight.navbar .navbar-inner:before {
+  background: white;
+  opacity: 0.4; }
+
+body.skiplinks-overlay header#hs-app-bar.overlay-highlight:after,
+body.skiplinks-overlay header#hs-app-bar .navbar-inner.overlay-highlight:after,
+body.skiplinks-overlay .sidebar.overlay-highlight:after,
+body.skiplinks-overlay main #content-inner.overlay-highlight:after, body.skiplinks-overlay.reader-open .header-bar.overlay-highlight:after, body.skiplinks-overlay.reader-open #reader-content.overlay-highlight:after, body.skiplinks-overlay.reader-open #reader-sidebar.overlay-highlight:after,
+body.skiplinks-overlay .reader-modal .header-bar.overlay-highlight:after,
+body.skiplinks-overlay .reader-modal #reader-content.overlay-highlight:after,
+body.skiplinks-overlay .reader-modal #reader-sidebar.overlay-highlight:after, html body.focus-landmark header#hs-app-bar:focus:after,
+html body.focus-landmark .sidebar:focus:after,
+html body.focus-landmark main:focus #content-inner:after, html body.focus-landmark.reader-open .header-bar:focus:after, html body.focus-landmark.reader-open #reader-content:focus:after, html body.focus-landmark.reader-open #reader-sidebar:focus:after,
+html body.focus-landmark .reader-modal .header-bar:focus:after,
+html body.focus-landmark .reader-modal #reader-content:focus:after,
+html body.focus-landmark .reader-modal #reader-sidebar:focus:after {
+  box-shadow: inset 0 0 0 2px white;
+  border: solid 2px #ff7f66;
+  opacity: 1;
+  background: none; }
+
+/* highlight search */
+body.skiplinks-overlay {
+  overflow: hidden;
+  /* Header */
+  /* Search */ }
+  body.skiplinks-overlay header#hs-app-bar .navbar-inner:before {
+    width: 285px; }
+  body.skiplinks-overlay header#hs-app-bar:before {
+    right: 0;
+    width: 251px; }
+  body.skiplinks-overlay header#hs-app-bar:after {
+    left: 285px;
+    right: 251px;
+    width: auto; }
+  body.skiplinks-overlay main {
+    position: relative; }
+  body.skiplinks-overlay.reader-open .header-bar:after, body.skiplinks-overlay.reader-open #reader-content:after, body.skiplinks-overlay.reader-open #reader-sidebar:after,
+  body.skiplinks-overlay .reader-modal .header-bar:after,
+  body.skiplinks-overlay .reader-modal #reader-content:after,
+  body.skiplinks-overlay .reader-modal #reader-sidebar:after {
+    left: 0; }
+  body.skiplinks-overlay header#hs-app-bar.overlay-highlight.navbar .navbar-inner:after,
+  body.skiplinks-overlay header#hs-app-bar .navbar-inner.overlay-highlight.navbar .navbar-inner:after,
+  body.skiplinks-overlay .sidebar.overlay-highlight.navbar .navbar-inner:after,
+  body.skiplinks-overlay main #content-inner.overlay-highlight.navbar .navbar-inner:after, body.skiplinks-overlay.reader-open .header-bar.overlay-highlight.navbar .navbar-inner:after, body.skiplinks-overlay.reader-open #reader-content.overlay-highlight.navbar .navbar-inner:after, body.skiplinks-overlay.reader-open #reader-sidebar.overlay-highlight.navbar .navbar-inner:after,
+  body.skiplinks-overlay .reader-modal .header-bar.overlay-highlight.navbar .navbar-inner:after,
+  body.skiplinks-overlay .reader-modal #reader-content.overlay-highlight.navbar .navbar-inner:after,
+  body.skiplinks-overlay .reader-modal #reader-sidebar.overlay-highlight.navbar .navbar-inner:after {
+    opacity: 0; }
+
+@media only screen and (min-width: 1023px) {
+  body.with-sidebar-left main #content-inner:after {
+    width: calc(100% - 284px) !important; } }
+header#hs-app-bar:focus,
+.sidebar:focus,
+main:focus {
+  outline: none; }
+
+html body.focus-landmark main {
+  position: relative; }
+html body.focus-landmark header#hs-app-bar:focus:after,
+html body.focus-landmark .sidebar:focus:after,
+html body.focus-landmark main:focus #content-inner:after, html body.focus-landmark.reader-open .header-bar:focus:after, html body.focus-landmark.reader-open #reader-content:focus:after, html body.focus-landmark.reader-open #reader-sidebar:focus:after,
+html body.focus-landmark .reader-modal .header-bar:focus:after,
+html body.focus-landmark .reader-modal #reader-content:focus:after,
+html body.focus-landmark .reader-modal #reader-sidebar:focus:after {
+  pointer-events: none; }
+
+hs-skiplist {
+  position: relative;
+  display: block; }
+  hs-skiplist button hs-icon[circle] .hsicon__wrapper {
+    transform: rotate(90deg);
+    border-color: #206fb1;
+    box-shadow: 0 0 0 1px white; }
+    hs-skiplist button hs-icon[circle] .hsicon__wrapper svg {
+      color: #206fb1;
+      background-color: white; }
+  hs-skiplist button:focus {
+    outline: none; }
+    hs-skiplist button:focus hs-icon[circle] .hsicon__wrapper {
+      box-shadow: 0 0 0 3px #206fb1; }
+  hs-skiplist button[aria-expanded] hs-icon[circle] .hsicon__wrapper {
+    transform: rotate(-90deg);
+    box-shadow: none; }
+    hs-skiplist button[aria-expanded] hs-icon[circle] .hsicon__wrapper svg {
+      color: white;
+      background-color: #206fb1; }
+  hs-skiplist .options {
+    box-sizing: border-box;
+    text-align: left;
+    position: absolute;
+    margin-top: 20px;
+    width: 100%;
+    left: 0;
+    right: 0;
+    border-top: solid 2px #206fb1;
+    border-radius: 8px;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.6);
+    background: #eee; }
+    hs-skiplist .options[aria-hidden=true] {
+      display: none; }
+    hs-skiplist .options:before {
+      display: block;
+      position: absolute;
+      top: -7px;
+      left: 50%;
+      transform: translateX(-50%);
+      content: " ";
+      width: 0;
+      height: 0;
+      border-left: 5px solid transparent;
+      border-right: 5px solid transparent;
+      border-bottom: 5px solid #206fb1; }
+    hs-skiplist .options ul {
+      list-style: none;
+      margin: 0; }
+      hs-skiplist .options ul:focus {
+        outline: none; }
+      hs-skiplist .options ul .focused {
+        background: #206fb1;
+        color: white; }
+    hs-skiplist .options li {
+      background: white;
+      padding: 8px 16px;
+      display: flex;
+      align-items: center; }
+      hs-skiplist .options li hs-icon {
+        display: block;
+        margin-right: 8px; }
+      hs-skiplist .options li * {
+        pointer-events: none; }
+      hs-skiplist .options li svg {
+        opacity: 0; }
+      hs-skiplist .options li[aria-selected=true] svg {
+        opacity: 1; }
+  hs-skiplist.skiplinks-listbox .options {
+    padding: 12px; }
+    hs-skiplist.skiplinks-listbox .options h2 {
+      color: black;
+      font-weight: normal;
+      text-transform: uppercase;
+      margin: 0 0 12px;
+      line-height: 1em; }
+    hs-skiplist.skiplinks-listbox .options li {
+      padding: 10px 48px;
+      border-radius: 24px;
+      font-size: 1.6rem;
+      color: #206fb1;
+      border: solid 2px #206fb1;
+      margin-top: 8px; }
+      hs-skiplist.skiplinks-listbox .options li svg {
+        opacity: 1; }
+    hs-skiplist.skiplinks-listbox .options ul .focused {
+      background: #206fb1;
+      color: white;
+      border: solid 1px white;
+      box-shadow: 0 0 0 3px #206fb1; }
+
+[data-thumbnail] hs-icon {
+  display: flex;
+  justify-content: center;
+  height: 100%; }
+  [data-thumbnail] hs-icon svg {
+    width: 100%;
+    height: 100%; }
+
+hs-thumbnail, .hs-thumbnail {
+  display: inline-block;
+  width: 100%;
+  height: 100%; }
+  hs-thumbnail .thumbnail-viewer, .hs-thumbnail .thumbnail-viewer {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    z-index: 1000; }
+    hs-thumbnail .thumbnail-viewer[count='1'] .thumbnail-skimmer, .hs-thumbnail .thumbnail-viewer[count='1'] .thumbnail-skimmer {
+      display: none; }
+    hs-thumbnail .thumbnail-viewer .thumbnail-image, .hs-thumbnail .thumbnail-viewer .thumbnail-image {
+      width: 100%;
+      height: 100%;
+      background-repeat: no-repeat;
+      background-position: top center;
+      background-size: cover;
+      transition: opacity 0.4s ease-in-out; }
+    hs-thumbnail .thumbnail-viewer .thumbnail-preview, .hs-thumbnail .thumbnail-viewer .thumbnail-preview {
+      display: none;
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: contain; }
+    hs-thumbnail .thumbnail-viewer .thumbnail-skimmer, .hs-thumbnail .thumbnail-viewer .thumbnail-skimmer {
+      opacity: 0;
+      transition: opacity 0.4s ease-in-out;
+      width: calc(100% - 30px);
+      margin: 0 15px;
+      bottom: 15px; }
+    hs-thumbnail .thumbnail-viewer.thumbnail-viewer--show-skim:hover .thumbnail-image, .hs-thumbnail .thumbnail-viewer.thumbnail-viewer--show-skim:hover .thumbnail-image {
+      opacity: 0; }
+    hs-thumbnail .thumbnail-viewer.thumbnail-viewer--show-skim:hover .thumbnail-preview, .hs-thumbnail .thumbnail-viewer.thumbnail-viewer--show-skim:hover .thumbnail-preview {
+      display: inline-block; }
+    hs-thumbnail .thumbnail-viewer.thumbnail-viewer--show-skim:hover .thumbnail-skimmer, .hs-thumbnail .thumbnail-viewer.thumbnail-viewer--show-skim:hover .thumbnail-skimmer {
+      opacity: 1; }
+    hs-thumbnail .thumbnail-viewer .thumbnail-skimmer, .hs-thumbnail .thumbnail-viewer .thumbnail-skimmer {
+      background: white;
+      border-radius: 6px;
+      border: 1px solid #206fb1;
+      height: 12px;
+      position: absolute;
+      box-sizing: border-box; }
+      hs-thumbnail .thumbnail-viewer .thumbnail-skimmer .skimmer, .hs-thumbnail .thumbnail-viewer .thumbnail-skimmer .skimmer {
+        background: #79a9d0;
+        border-radius: 3px;
+        height: 6px;
+        min-width: 6px;
+        max-width: calc(100% - 4px);
+        margin: 2px; }
+
+template {
+  display: none; }
+
+hs-test .hs-test__wrapper {
+  padding: 20px;
+  border: solid 1px purple; }
+hs-test .hs-test__header {
+  padding: 20px;
+  border: solid 1px blue; }
+hs-test .hs-test__footer {
+  padding: 20px;
+  border: solid 1px red; }
+hs-test .hs-test__component {
+  border: solid 1px green; }
+hs-test .hs-test__component-children {
+  border: solid 1px purple; }
+hs-test .markup {
+  display: inline; }
