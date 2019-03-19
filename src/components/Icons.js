@@ -28,7 +28,7 @@ export class HsIcon extends Component {
         </div>
       );
     }
-    // exclude wrapper <div class="hs-icon"> for element <hs-icon>
+    //exclude wrapper <div class="hs-icon"> for element <hs-icon>
     return template;
   }
 }
