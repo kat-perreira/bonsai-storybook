@@ -17,7 +17,7 @@ import React from "react";
 
 storiesOf("Icons", module)
   .add("Trash", () => (
-     <svg class="icon-trashcan"><use xlinkHref="#icon-trashcan"></use></svg>
+    <svg class="icon-trashcan"><use xlinkHref="#icon-trashcan"></use></svg>
    ));
 // // storiesOf("Icons", module)
 // //   .add("Trash", () => (
