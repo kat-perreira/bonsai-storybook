@@ -1,9 +1,9 @@
 import { action } from "@storybook/addon-actions";
 import { storiesOf } from "@storybook/react/dist/client/preview";
 import React from "react";
+import { HsIcon } from "./Icons";
 // import PropTypes from "prop-types";
 //  //import { HsIcon } from "./Icons";
-
 
 
 
@@ -16,13 +16,14 @@ import React from "react";
 
 
 storiesOf("Icons", module)
+  // .add("Trash", () => (
+  //    <svg class="icon-trashcan"><use xlinkHref="#icon-trashcan"></use></svg>
+
+  //  ));
+storiesOf("Icons", module)
   .add("Trash", () => (
-     <svg class="icon-trashcan"><use xlinkHref="#icon-trashcan"></use></svg>
-   ));
-// // storiesOf("Icons", module)
-// //   .add("Trash", () => (
-// //     // <div>
-// //     //   <HsIcon icon="trashcan" />
-// //     // </div>
-// //     <svg class="icon-trashcan"><use xlinkHref="#icon-trashcan"></use></svg>
-// //   ))
+    <div>
+      <HsIcon icon="trashcan" />
+    </div>
+   // <svg class="icon-trashcan"><use xlinkHref="#icon-trashcan"></use></svg>
+  ))
