@@ -21,3 +21,5 @@ HsIcon.propTypes = {
   class: PropTypes.string,                // optional classes
   forElement: PropTypes.bool,                  // render for element (exclude wrapper tag)
 };
+
+

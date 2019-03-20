@@ -9,5 +9,4 @@ storiesOf("Icons", module)
     <div>
       <HsIcon icon="trashcan" />
     </div>
-   // <svg class="icon-trashcan"><use xlinkHref="#icon-trashcan"></use></svg>
   ))
