@@ -1,5 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types"; 
+import { withA11y } from '@storybook/addon-a11y';
+import { storiesOf, addDecorator } from '@storybook/react';
+
+
+addDecorator(withA11y)
 
 function Task({
   task: { id, title, state },

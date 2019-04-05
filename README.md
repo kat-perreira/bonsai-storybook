@@ -13,7 +13,11 @@ git clone git@github.com:kat-perreira/bonsai-storybook.git
 npm install
 npm run storybook
 ```
+To Update Storybook:
 
+```
+npx npm-check-updates '/storybook/' -u && npm install
+```
 ##About Storybook
 
 <p align="center">
