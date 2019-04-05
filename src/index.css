@@ -1,3 +1,6 @@
+
+
+
 hs-modal {
   display: none;
   position: fixed;
@@ -1712,3 +1715,21 @@ hs-test .hs-test__component-children {
   border: solid 1px purple; }
 hs-test .markup {
   display: inline; }
+
+
+.hs-icon {
+  padding: 1rem;
+  background-color: #206fb1;
+  height: 40px;
+  width: 40px; 
+  border-radius: 50%;
+  color: white;
+}
+
+.icons {
+  display: grid;
+  grid-template-columns: repeat(8, 100px); 
+  grid-gap: 10px;
+  background-color: #fff;
+  color: #444;  
+}
